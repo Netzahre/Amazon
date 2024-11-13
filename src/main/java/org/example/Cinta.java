@@ -23,7 +23,7 @@ public class Cinta<T> {
             T paquete = cola2.pop();
             System.out.println("Cola 1 actual: " + cola1.size());
             Thread.sleep(3000);
-            notifyAll();
+            condicion1.signalAll();
             return paquete;
 
         } finally {
@@ -41,7 +41,7 @@ public class Cinta<T> {
             T paquete = cola2.pop();
             System.out.println("Cola 2 actual: " + cola2.size());
             Thread.sleep(3000);
-            notifyAll();
+            condicion2.signalAll();
             return paquete;
         } finally {
             lock2.unlock();
@@ -57,7 +57,7 @@ public class Cinta<T> {
             cola1.add(paquete);
             System.out.println("Cola 1 actual: " + cola1.size());
             Thread.sleep(3000);
-            notifyAll();
+            condicion1.signalAll();
         } finally {
             lock.unlock();
         }
@@ -72,7 +72,7 @@ public class Cinta<T> {
             cola2.add(paquete);
             System.out.println("Cola 2 actual: " + cola2.size());
             Thread.sleep(3000);
-            notifyAll();
+            condicion2.signalAll();
         } finally {
             lock2.unlock();
         }
